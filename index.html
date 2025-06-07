@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>أجندة مشروعي السري - مغامرة الابتكار للأطفال</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: #fff8f0;
+    margin: 0; padding: 0;
+    color: #333;
+    direction: rtl;
+  }
+  header {
+    background: #f9a825;
+    color: white;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  main {
+    max-width: 700px;
+    margin: 1.5rem auto;
+    padding: 1rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(249,168,37,0.3);
+  }
+  section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 15px;
+    background: #fff3d6;
+    box-shadow: 0 3px 8px rgba(249,168,37,0.4);
+  }
+  section:nth-child(odd) {
+    background: #ffeab4;
+  }
+  h2 {
+    margin-top: 0;
+    color: #b27300;
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    border-bottom: 3px solid #f9a825;
+    padding-bottom: 0.3rem;
+  }
+  label {
+    display: block;
+    font-weight: 700;
+    margin: 0.8rem 0 0.3rem;
+  }
+  select, input[type="text"], textarea {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: 2px solid #f9a825;
+    background: white;
+    resize: vertical;
+  }
+  textarea {
+    min-height: 80px;
+  }
+  .draw-area {
+    margin-top: 0.8rem;
+    border: 2px dashed #f9a825;
+    border-radius: 12px;
+    background: #fffbea;
+    height: 200px;
+    position: relative;
+  }
+  .draw-area canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    cursor: crosshair;
+  }
+  button.clear-btn {
+    margin-top: 0.5rem;
+    background: #f9a825;
+    border: none;
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  footer {
+    text-align: center;
+    color: #aaa;
+    margin: 3rem 0 1rem;
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+
+<header>أجندة مشروعي السري<br>مغامرة الابتكار للأطفال</header>
+
+<main>
+  <!-- المرحلة 1 -->
+  <section>
+    <h2>🎲 المرحلة 1: اختر نوع مشروعك</h2>
+    <label for="project-type">ما هو نوع مشروعك؟</label>
+    <select id="project-type" name="project-type" aria-label="نوع المشروع">
+      <option value="" disabled selected>اختر من القائمة</option>
+      <option value="مطعم صغير">مطعم صغير</option>
+      <option value="متجر ألعاب">متجر ألعاب</option>
+      <option value="تطبيق ذكي">تطبيق ذكي</option>
+      <option value="منتجات يدوية">منتجات يدوية</option>
+      <option value="مشروع تعليمي">مشروع تعليمي</option>
+      <option value="آخر">آخر</option>
+    </select>
+  </section>
+
+  <!-- المرحلة 2 -->
+  <section>
+    <h2>✏️ المرحلة 2: سمّ المشروع وارسم شعاره</h2>
+    <label for="project-name">اسم مشروعك:</label>
+    <input type="text" id="project-name" name="project-name" placeholder="اكتب اسم مشروعك هنا" />
+
+    <label>ارسم شعار مشروعك هنا:</label>
+    <div class="draw-area">
+      <canvas id="logo-canvas" width="600" height="200"></canvas>
+    </div>
+    <button class="clear-btn" type="button" onclick="clearCanvas()">مسح الرسم</button>
+  </section>
+
+  <!-- المرحلة 3 -->
+  <section>
+    <h2>👥 المرحلة 3: من هم عملاؤك؟</h2>
+    <label for="customers">اكتب أو صف من هم الناس الذين تريد أن يشترو منك؟</label>
+    <textarea id="customers" name="customers" placeholder="مثلاً: الأطفال، الأهل، المدارس..."></textarea>
+  </section>
+
+  <!-- المرحلة 4 -->
+  <section>
+    <h2>📢 المرحلة 4: خطط إعلانك وبوسترك</h2>
+    <label for="ad-idea">فكر في إعلان أو بوستر لمشروعك. ماذا تقول؟</label>
+    <textarea id="ad-idea" name="ad-idea" placeholder="مثلاً: تعال وجرب ألذ الحلويات عندنا!"></textarea>
+  </section>
+
+  <!-- المرحلة 5 -->
+  <section>
+    <h2>💰 المرحلة 5: حدد ميزانية بسيطة</h2>
+    <label for="budget">كم الميزانية التي تحتاجها (تخيل مبلغ بسيط بالريال):</label>
+    <input type="text" id="budget" name="budget" placeholder="مثلاً: 100 ريال" />
+  </section>
+
+  <!-- المرحلة 6 -->
+  <section>
+    <h2>🏆 المرحلة 6: شهادة مبتكر المستقبل</h2>
+    <p>مبروك! أنت الآن مبتكر المستقبل 🎉</p>
+    <p>اكتب اسمك هنا ليكون في شهادتك:</p>
+    <input type="text" id="child-name" name="child-name" placeholder="اسم الطفل" />
+
+    <button onclick="generateCertificate()" style="margin-top:10px; background:#b27300; color:white; padding:0.8rem 1.5rem; border:none; border-radius:10px; cursor:pointer;">
+      اصنع شهادتك
+    </button>
+
+    <div id="certificate" style="margin-top:1rem; padding:1rem; background:#fffbea; border:2px solid #f9a825; border-radius:10px; display:none;">
+      <h3 style="color:#b27300;">شهادة مبتكر المستقبل</h3>
+      <p>تُمنح هذه الشهادة لـ <strong id="cert-name"></strong></p>
+      <p>لإبداعه وجهوده في ابتكار مشروعه السري بنجاح!</p>
+      <p>🎉🌟🚀</p>
+    </div>
+  </section>
+</main>
+
+<footer>© 2025 أجندة مشروعي السري | كل الحقوق محفوظة</footer>
+
+<script>
+  // الرسم على الكانفاس
+  const canvas = document.getElementById('logo-canvas');
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+
+  function startDrawing(e) {
+    drawing = true;
+    draw(e);
+  }
+  function endDrawing() {
+    drawing = false;
+    ctx.beginPath();
+  }
+  function draw(e) {
+    if(!drawing) return;
+    const rect = canvas.getBoundingClientRect();
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = '#f9a825';
+    ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+  }
+  canvas.addEventListener('mousedown', startDrawing);
+  canvas.addEventListener('mouseup', endDrawing);
+  canvas.addEventListener('mouseout', endDrawing);
+  canvas.addEventListener('mousemove', draw);
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+  }
+
+  // إنشاء الشهادة
+  function generateCertificate() {
+    const name = document.getElementById('child-name').value.trim();
+    if(!name) {
+      alert('رجاءً اكتب اسمك ليتم صنع الشهادة');
+      return;
+    }
+    document.getElementById('cert-name').textContent = name;
+    document.getElementById('certificate').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
